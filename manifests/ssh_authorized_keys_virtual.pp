@@ -1,11 +1,10 @@
-define users::ssh_authorized_keys(
+define users::ssh_authorized_keys_virtual (
     $user,
     $hash,
     $tag = undef,
 ) {
  
-    if(!defined(Ssh_authorized_keys[$user])) {
-	ssh_authorized_key { "${user}-${name}" :
+	@ssh_authorized_key { "${user}-${name}" :
 	    ensure   => $hash[$name]['ensure'],
 	    key      => $hash[$name]['key'],
 	    options  => $hash[$name]['options'],
@@ -15,6 +14,5 @@ define users::ssh_authorized_keys(
 	    user     => $user,
             tag      => $tag,
 	}
-    }
 
 }

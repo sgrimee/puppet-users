@@ -1,3 +1,5 @@
+# define virtual users from hiera or given hash
+#
 define users(
 	$match      = 'all',
 	$hash       = undef
@@ -28,7 +30,7 @@ define users(
 	
 	if $_hash {
 		$users = keys($_hash)
-		users::setup { 
+		users::setup_virtual { 
 			$users:
 				hash       => $_hash;
 		}
